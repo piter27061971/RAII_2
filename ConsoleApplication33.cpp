@@ -4,7 +4,17 @@
 class smart_array {
 public:
 
+    smart_array(smart_array & src)
+    {
+        kol_elem = src.kol_elem_massiv();
+        kol_elem_max = src.max_kol_eleme_massiv();
+        ptr = new int[kol_elem_max] {0};
+        for (int i = 0; i < kol_elem; i++)
+        {
+            ptr[i] = src.get_element(i);
+        }
 
+    }
 
     smart_array& operator=( smart_array& src)
 {
@@ -16,10 +26,7 @@ public:
 
     // освобождаем занятую память
 
-
     delete[] ptr;
-
-    
 
     // выделяем память
 
@@ -35,7 +42,6 @@ public:
 
     return *this;
 }
-
 
     smart_array(int size)
     {
@@ -129,6 +135,8 @@ int main()
     std::cout << "Объект new_array. " <<new_array.vivod(1)<<std::endl;
     std::cout << "Объект arr. " << arr.vivod(1) << std::endl;
 
+    smart_array new_array_2(arr);
+    std::cout << "Объект new_array_2. " << new_array_2.vivod(1) << std::endl;
 
 }
 
